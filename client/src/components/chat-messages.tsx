@@ -11,12 +11,13 @@ import MessageContent from "./message-content"
 interface ChatMessagesProps {
   messages: any[]
   isLoading: boolean
-  messagesEndRef: RefObject<HTMLDivElement>
-  scrollAreaRef: RefObject<HTMLDivElement>
+  messagesEndRef: RefObject<HTMLDivElement | null>
+  scrollAreaRef: RefObject<HTMLDivElement | null>
   handlePdfClick: (url: string) => void
   handleSuggestedPrompt: (prompt: string) => void
-  formRef: RefObject<HTMLFormElement>
-  fileInputRef: RefObject<HTMLInputElement>
+  formRef: RefObject<HTMLFormElement | null>
+  fileInputRef: RefObject<HTMLInputElement | null>
+  handleFileChange: (e: React.ChangeEvent<HTMLInputElement>) => void
 }
 
 export default function ChatMessages({
@@ -28,6 +29,7 @@ export default function ChatMessages({
   handleSuggestedPrompt,
   formRef,
   fileInputRef,
+  handleFileChange
 }: ChatMessagesProps) {
   // Animation variants
   const messageVariants = {
@@ -99,8 +101,8 @@ function EmptyState({
   fileInputRef,
 }: {
   handleSuggestedPrompt: (prompt: string) => void
-  formRef: RefObject<HTMLFormElement>
-  fileInputRef: RefObject<HTMLInputElement>
+  formRef: RefObject<HTMLFormElement | null>
+  fileInputRef: RefObject<HTMLInputElement | null>
 }) {
   return (
     <motion.div

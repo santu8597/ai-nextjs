@@ -46,7 +46,7 @@ export default function Chat() {
     }
 
     const newPreviews: string[] = []
-    const newPdfPreviews: { name: string; size: number; url: string }[] = []
+    const newPdfPreviews: { name: string; size: number; url: string,type?:string }[] = []
     setIsUploading(true)
 
     Array.from(files).forEach((file) => {

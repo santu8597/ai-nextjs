@@ -13,8 +13,8 @@ interface ChatInputProps {
   onSubmit: (e: React.FormEvent<HTMLFormElement>) => void
   isLoading: boolean
   files: FileList | undefined
-  formRef: RefObject<HTMLFormElement>
-  fileInputRef: RefObject<HTMLInputElement>
+  formRef: RefObject<HTMLFormElement | null>
+  fileInputRef: RefObject<HTMLInputElement | null>
   handleFileChange: (e: React.ChangeEvent<HTMLInputElement>) => void
 }
 
