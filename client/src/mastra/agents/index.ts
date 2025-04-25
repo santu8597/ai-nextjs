@@ -252,3 +252,4 @@ export const youtubeAgent = new Agent({
   model: google('gemini-1.5-pro'),
   tools: { youtubePlayTool },
 });
+
