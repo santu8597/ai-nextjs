@@ -59,7 +59,24 @@ export default function MessageContent({ message, handlePdfClick }: MessageConte
                   result: part.toolInvocation.state === "result" ? part.toolInvocation.result : null,
                   state: part.toolInvocation.state,
                 }
-                
+                if (toolInvocation.state === "result" && toolInvocation.toolName==="imageGenTool") {
+                  
+                  return (
+                    <div key={`tool-${index}`} className="my-2">
+                      
+                        <img
+                          src={`${toolInvocation?.result?.imageUrl}`}
+                          width={300}
+                          height={300}
+                          alt={`Generated image ${index}`}
+                          className="object-contain max-h-[300px] w-auto rounded-md"
+                        />
+                      
+                    </div>
+                   
+                  )
+
+                }
                 return (
                   <div key={`tool-${index}`} className="bg-secondary/20 p-2 rounded-md my-2 text-sm">
                     <div className="font-semibold text-xs mb-1">Tool: {part.toolInvocation.toolName}</div>

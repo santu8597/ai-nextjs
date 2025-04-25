@@ -11,6 +11,8 @@
   },
   "dependencies": {
     "@ai-sdk/google": "^1.2.12",
+    "@google/genai": "^0.10.0",
+    "@google/generative-ai": "^0.24.0",
     "@mastra/client-js": "^0.1.17",
     "@mastra/core": "^0.8.3",
     "@mastra/memory": "^0.2.10",
