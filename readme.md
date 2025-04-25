@@ -3,6 +3,34 @@
 
 This Project is about building ai-agents with Mastra and Nextjs framework
 
+## Getting Started
+
+To run this project locally, follow these steps:
+
+1.  Clone the repository:
+
+    ```bash
+    git clone https://github.com/santu8597/ai-nextjs.git
+    ```
+
+2.  Navigate to the client directory:
+
+    ```bash
+    cd client
+    ```
+
+3.  Install the dependencies:
+
+    ```bash
+    npm install
+    ```
+
+4.  Run the development server:
+
+    ```bash
+    npm run dev
+    ```
+
 ## Agents
 
 Agents are responsible for performing specific tasks or interacting with external services.
