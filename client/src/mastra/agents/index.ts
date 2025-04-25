@@ -199,10 +199,10 @@ export const phishingDetectorAgent = new Agent({
 export const normalAgent = new Agent({
   name: 'code generte Agent',
   instructions: `
-    you are a helpful agent
+    you are a helpful agent that can generate images with prompt
     
   `,
-  model: google('gemini-2.0-flash'),
+  model: google('gemini-2.0-flash-exp-image-generation'),
   
 });
 
