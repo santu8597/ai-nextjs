@@ -1,7 +1,7 @@
 
 # Mastra Overview
 
-This directory contains the core logic for Mastra, including agents, tools, and workflows.
+This Project is about building ai-agents with Mastra and Nextjs framework
 
 ## Agents
 
