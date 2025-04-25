@@ -59,7 +59,7 @@ export default function MessageContent({ message, handlePdfClick }: MessageConte
                   result: part.toolInvocation.state === "result" ? part.toolInvocation.result : null,
                   state: part.toolInvocation.state,
                 }
-
+                
                 return (
                   <div key={`tool-${index}`} className="bg-secondary/20 p-2 rounded-md my-2 text-sm">
                     <div className="font-semibold text-xs mb-1">Tool: {part.toolInvocation.toolName}</div>
@@ -68,6 +68,24 @@ export default function MessageContent({ message, handlePdfClick }: MessageConte
                     </pre>
                   </div>
                 )
+                // case "tool-result":
+                //   // Check if this is a weather tool result
+                //   if (part.toolResult?.type === "analyzeSrcStructureTool" && part.toolResult?.data) {
+                //     return (
+                //       <div key={`tool-result-${index}`} className="my-3">
+                //         <h1>dshhhjdw</h1>
+                //       </div>
+                //     )
+                //   }
+                //   // Default tool result rendering
+                //   return (
+                //     <div key={`tool-result-${index}`} className="bg-primary/5 p-2 rounded-md my-2 text-sm">
+                //       <div className="font-semibold text-xs mb-1 text-primary">Tool Result:</div>
+                //       <pre className="text-xs overflow-auto p-1 bg-black/5 rounded">
+                //         {JSON.stringify(part.toolResult, null, 2)}
+                //       </pre>
+                //     </div>
+                //   )
               case "file":
                 return (
                   <div key={`file-${index}`} className="my-2">

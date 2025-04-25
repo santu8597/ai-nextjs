@@ -127,7 +127,7 @@ function EmptyState({
       </div>
       <h3 className="text-xl font-medium mb-2">Start a conversation</h3>
       <p className="text-sm max-w-xs">
-        Ask questions, upload images, or just chat about anything you'd like assistance with
+        Ask questions, upload images,videos,pdfs,audio or just chat about anything you'd like with the assistant
       </p>
 
       <div className="mt-8 flex flex-wrap justify-center gap-3">
@@ -152,7 +152,7 @@ function EmptyState({
           className="flex items-center gap-2 group"
           onClick={() => fileInputRef.current?.click()}
         >
-          <span>Upload an image</span>
+          <span>Upload an file</span>
           <motion.div
             animate={{ y: [0, -3, 0] }}
             transition={{ repeat: Number.POSITIVE_INFINITY, duration: 1.5, repeatDelay: 1 }}
