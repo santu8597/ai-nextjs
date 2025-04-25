@@ -20,8 +20,8 @@
     ],
     "paths": {
       "@/*": ["./src/*"],
-      "@/agent/*": ["./src/app/mastra/agents/*"],
-      "@/tools/*": ["./src/app/mastra/tools/*"],
+      "@/agent/*": ["./src/mastra/agents/*"],
+      "@/tools/*": ["./src/mastra/tools/*"],
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
