@@ -56,6 +56,7 @@ Tools provide reusable functionalities that agents can utilize.
 *   **web-scrape**: Tool for scraping data from websites. (`src/mastra/tools/web-scrape.ts`)
 *   **web-tool**: General-purpose tool for web interactions. (`src/mastra/tools/web-tool.ts`)
 *   **youtube-tool**: Tool for interacting with YouTube. (`src/mastra/tools/youtube-tool.ts`)
+*   **image-generation-tool**: Tool for interacting with YouTube. (`src/mastra/tools/imagen-tool.ts`)
 
 ## Workflows
 
@@ -79,5 +80,6 @@ Agents are responsible for performing specific tasks or interacting with externa
 *   **Phishing Detector Agent**: An AI agent trained to detect phishing links. It uses `urlAnalysisTool` and `patternDetectionTool` to check for indicators such as HTTPS presence, domain reputation, and suspicious URL patterns.
 *   **Browser Automation Agent**: A powerful browser automation agent that can visit URLs, click buttons, scroll pages, and wait for content to load. It uses the `browserAutomationTool`.
 *   **Web Scraper Agent**: A professional data extraction agent that can automate web pages, interact with dynamic content, and scrape structured information. It uses the `webScraperTool`.
+*   **Image Generation Agent**: An assistant that generates good images with gemini image model. It uses the `ImagenTool`.
 *   **YouTube Player Agent**: An assistant that opens and plays YouTube videos using a browser automation server. It uses the `youtubePlayTool`.
 
