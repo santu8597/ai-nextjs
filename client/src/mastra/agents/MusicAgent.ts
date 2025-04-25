@@ -1,6 +1,6 @@
 import { google } from "@ai-sdk/google";
 import { Agent } from "@mastra/core/agent";
-import { musicMoodTool } from "../tools/MusicAgent/MusicAgent";
+import { musicMoodTool } from "@/tools/MusicAgent/MusicAgent";
 import { Memory } from "@mastra/memory";
 
 export const MusicMoodAgent = new Agent({
