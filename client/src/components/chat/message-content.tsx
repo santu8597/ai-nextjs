@@ -7,7 +7,7 @@ import remarkGfm from "remark-gfm"
 import rehypeHighlight from "rehype-highlight"
 import { useMarkdownProcessor } from "@/components/hooks/use-text-processor"
 import ToolInvocationCard from "./tool-invocation-card"
-import { FileUp, Music, Video } from "lucide-react"
+import { FileUp, Music, Video,DownloadIcon } from "lucide-react"
 
 interface MessageContentProps {
   message: any
@@ -26,6 +26,7 @@ export default function MessageContent({ message, handlePdfClick }: MessageConte
           {message.parts.map((part: any, index: number) => {
             switch (part.type) {
               case "text":
+               
                 return (
                   <ReactMarkdown key={`text-${index}`} remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeHighlight]}>
                     {part.text}
@@ -59,24 +60,27 @@ export default function MessageContent({ message, handlePdfClick }: MessageConte
                   result: part.toolInvocation.state === "result" ? part.toolInvocation.result : null,
                   state: part.toolInvocation.state,
                 }
-                if (toolInvocation.state === "result" && toolInvocation.toolName==="imageGenTool") {
-                  
+                if (toolInvocation.state === "result" && toolInvocation.toolName === "imageGenTool"){
                   return (
-                    <div key={`tool-${index}`} className="my-2">
-                      
-                        <img
+                    <div key={`tool-${index}`} className="relative my-2 w-fit">
+                        <Image 
                           src={`${toolInvocation?.result?.imageUrl}`}
                           width={300}
                           height={300}
                           alt={`Generated image ${index}`}
                           className="object-contain max-h-[300px] w-auto rounded-md"
-                        />
-                      
-                    </div>
-                   
-                  )
+                          />
+                        <a 
+                          href={`${toolInvocation?.result?.imageUrl}`} 
+                          download 
+                          className="absolute top-2 right-2 bg-white/70 hover:bg-white p-1 rounded-full"
+                        >
+                          <DownloadIcon className="w-5 h-5 text-black" />
+                        </a>
+                      </div>
+                   )}
 
-                }
+                
                 return (
                   <div key={`tool-${index}`} className="bg-secondary/20 p-2 rounded-md my-2 text-sm">
                     <div className="font-semibold text-xs mb-1">Tool: {part.toolInvocation.toolName}</div>
@@ -85,24 +89,7 @@ export default function MessageContent({ message, handlePdfClick }: MessageConte
                     </pre>
                   </div>
                 )
-                // case "tool-result":
-                //   // Check if this is a weather tool result
-                //   if (part.toolResult?.type === "analyzeSrcStructureTool" && part.toolResult?.data) {
-                //     return (
-                //       <div key={`tool-result-${index}`} className="my-3">
-                //         <h1>dshhhjdw</h1>
-                //       </div>
-                //     )
-                //   }
-                //   // Default tool result rendering
-                //   return (
-                //     <div key={`tool-result-${index}`} className="bg-primary/5 p-2 rounded-md my-2 text-sm">
-                //       <div className="font-semibold text-xs mb-1 text-primary">Tool Result:</div>
-                //       <pre className="text-xs overflow-auto p-1 bg-black/5 rounded">
-                //         {JSON.stringify(part.toolResult, null, 2)}
-                //       </pre>
-                //     </div>
-                //   )
+              
               case "file":
                 return (
                   <div key={`file-${index}`} className="my-2">
