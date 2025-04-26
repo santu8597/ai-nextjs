@@ -13,8 +13,8 @@ export const imageAgent = new Agent({
     use the generate-image tool.
 
     Always make sure the prompt is visual and descriptive.
-    after generating the image just say a few words about the image and then say "Done".
-    For example, if the user says "draw a cat", you might say "A fluffy orange cat sitting on a windowsill, looking out at the sunset."
+    try to make the image big aspect ratio 16:9 and high quality.
+    dont speak to the user, just generate the image and try to make it as good as possible.
     
   `,
   model: google('gemini-2.0-flash'),

@@ -68,7 +68,7 @@ export default function MessageContent({ message, handlePdfClick }: MessageConte
                           width={300}
                           height={300}
                           alt={`Generated image ${index}`}
-                          className="object-contain max-h-[300px] w-auto rounded-md"
+                          className="object-contain max-h-[500px] w-auto rounded-md"
                           />
                         <a 
                           href={`${toolInvocation?.result?.imageUrl}`} 
@@ -99,7 +99,7 @@ export default function MessageContent({ message, handlePdfClick }: MessageConte
                         width={300}
                         height={300}
                         alt={`Generated image ${index}`}
-                        className="object-contain max-h-[300px] w-auto rounded-md"
+                        className="object-contain max-h-[400px] w-auto rounded-md"
                       />
                     )}
                   </div>
