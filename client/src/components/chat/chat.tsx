@@ -3,31 +3,57 @@
 import { useChat } from "@ai-sdk/react"
 import type React from "react"
 import { useEffect, useRef, useState } from "react"
-import { Loader2 } from "lucide-react"
+import { Loader2, Terminal, Code, Cloud, Image, Music, Twitter, Mail, FileText, Shield, User, Globe, Search, ChevronDown, Check } from 'lucide-react'
 import { motion, AnimatePresence } from "framer-motion"
 import ChatHeader from "./chat-header"
 import ChatInput from "./chat-input"
 import ChatMessages from "./chat-messages"
 import FilePreviewArea from "./file-preview-area"
 import PdfViewer from "./pdf-viewer"
+import { Button } from "@/components/ui/button"
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
 
 export default function Chat() {
   const [selectedAgent, setSelectedAgent] = useState('shellAgent');
-  const agents = ['shellAgent', 'nextjsAgent', 'weatherAgent','imageAgent','MusicMoodAgent','twitterAgent','emailAgent','docsAgent','phishingDetectorAgent','normalAgent','browserAgent','webScraperAgent'];
+  
+  const agents = [
+    { id: 'shellAgent', name: 'Shell Agent', icon: <Terminal className="h-4 w-4 mr-2" /> },
+    { id: 'nextjsAgent', name: 'Next.js Agent', icon: <Code className="h-4 w-4 mr-2" /> },
+    { id: 'weatherAgent', name: 'Weather Agent', icon: <Cloud className="h-4 w-4 mr-2" /> },
+    { id: 'imageAgent', name: 'Image Agent', icon: <Image className="h-4 w-4 mr-2" /> },
+    { id: 'MusicMoodAgent', name: 'Music Mood Agent', icon: <Music className="h-4 w-4 mr-2" /> },
+    { id: 'twitterAgent', name: 'Twitter Agent', icon: <Twitter className="h-4 w-4 mr-2" /> },
+    { id: 'emailAgent', name: 'Email Agent', icon: <Mail className="h-4 w-4 mr-2" /> },
+    { id: 'docsAgent', name: 'Docs Agent', icon: <FileText className="h-4 w-4 mr-2" /> },
+    { id: 'phishingDetectorAgent', name: 'Phishing Detector', icon: <Shield className="h-4 w-4 mr-2" /> },
+    { id: 'normalAgent', name: 'Normal Agent', icon: <User className="h-4 w-4 mr-2" /> },
+    { id: 'browserAgent', name: 'Browser Agent', icon: <Globe className="h-4 w-4 mr-2" /> },
+    { id: 'webScraperAgent', name: 'Web Scraper Agent', icon: <Search className="h-4 w-4 mr-2" /> },
+  ];
 
-  const handleChange = (event:React.ChangeEvent<HTMLInputElement>) => {
-    setSelectedAgent(event.target.value);
+  const getSelectedAgentName = () => {
+    return agents.find(agent => agent.id === selectedAgent)?.name || 'Select Agent';
   };
+
+  const getSelectedAgentIcon = () => {
+    return agents.find(agent => agent.id === selectedAgent)?.icon;
+  };
+
   const { messages, input, handleInputChange, handleSubmit, isLoading } = useChat({
     api: "api/chat",
     body: {
-      ai_agent:selectedAgent
+      ai_agent: selectedAgent
     }
   })
   const [files, setFiles] = useState<FileList | undefined>(undefined)
   
   const [previews, setPreviews] = useState<string[]>([])
-  const [pdfPreviews, setPdfPreviews] = useState<{ name: string; size: number; url: string }[]>([])
+  const [pdfPreviews, setPdfPreviews] = useState<{ name: string; size: number; url: string; type?: string }[]>([])
   const [activePdf, setActivePdf] = useState<string | null>(null)
   const [isUploading, setIsUploading] = useState(false)
   const fileInputRef = useRef<HTMLInputElement>(null)
@@ -55,7 +81,7 @@ export default function Chat() {
     }
 
     const newPreviews: string[] = []
-    const newPdfPreviews: { name: string; size: number; url: string,type?:string }[] = []
+    const newPdfPreviews: { name: string; size: number; url: string, type?: string }[] = []
     setIsUploading(true)
 
     Array.from(files).forEach((file) => {
@@ -77,7 +103,7 @@ export default function Chat() {
           }
         }
         reader.readAsDataURL(file)
-      }else if (file.type.startsWith("audio/") || file.type.startsWith("video/")) {
+      } else if (file.type.startsWith("audio/") || file.type.startsWith("video/")) {
         // Create object URL for audio and video files
         const url = URL.createObjectURL(file)
         // Store in the same array as PDFs for simplicity
@@ -132,23 +158,36 @@ export default function Chat() {
   return (
     <div className="flex flex-col w-full mx-auto h-screen bg-background shadow-lg overflow-hidden">
       
-      
-      <div>
-        {agents.map((agent) => (
-          <label key={agent}>
-            <input
-              type="radio"
-              name="agent"
-              value={agent}
-              checked={selectedAgent === agent}
-              onChange={handleChange}
-            />
-            {agent}
-          </label>
-        ))}
+      <div className="flex items-center justify-between px-4 py-2 border-b">
+        <ChatHeader />
+        
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <Button variant="outline" className="flex items-center gap-2">
+              {getSelectedAgentIcon()}
+              <span>{getSelectedAgentName()}</span>
+              <ChevronDown className="h-4 w-4 ml-1 opacity-70" />
+            </Button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent align="end" className="w-56">
+            {agents.map((agent) => (
+              <DropdownMenuItem 
+                key={agent.id}
+                onClick={() => setSelectedAgent(agent.id)}
+                className="flex items-center justify-between"
+              >
+                <div className="flex items-center">
+                  {agent.icon}
+                  <span>{agent.name}</span>
+                </div>
+                {selectedAgent === agent.id && (
+                  <Check className="h-4 w-4 ml-2" />
+                )}
+              </DropdownMenuItem>
+            ))}
+          </DropdownMenuContent>
+        </DropdownMenu>
       </div>
-      
-      <ChatHeader />
 
       <ChatMessages
         messages={messages}
@@ -189,7 +228,6 @@ export default function Chat() {
         formRef={formRef}
         fileInputRef={fileInputRef}
         handleFileChange={handleFileChange}
-        
       />
 
       {activePdf && <PdfViewer activePdf={activePdf} setActivePdf={setActivePdf} />}

@@ -9,7 +9,7 @@ import { weatherTool,shellTool,twitterTool,sendEmailTool,webSearchTool,fileSyste
   analyzeSrcStructureTool,
   browserAutomationTool,
   webScraperTool,
-  youtubePlayerTool
+  
    } from '../tools';
 import { Memory } from '@mastra/memory';
 export const weatherAgent = new Agent({
