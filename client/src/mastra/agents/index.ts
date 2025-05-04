@@ -9,7 +9,7 @@ import { weatherTool,shellTool,twitterTool,sendEmailTool,webSearchTool,fileSyste
   analyzeSrcStructureTool,
   browserAutomationTool,
   webScraperTool,
-  youtubePlayTool
+  youtubePlayerTool
    } from '../tools';
 import { Memory } from '@mastra/memory';
 export const weatherAgent = new Agent({
@@ -199,10 +199,10 @@ export const phishingDetectorAgent = new Agent({
 export const normalAgent = new Agent({
   name: 'code generte Agent',
   instructions: `
-    you are a helpful agent that can generate images with prompt
+    you are a helpful agent that can analyse audio and video files
     
   `,
-  model: google('gemini-2.0-flash-exp-image-generation'),
+  model: google('gemini-2.0-flash'),
   
 });
 
@@ -243,13 +243,21 @@ export const webScraperAgent = new Agent({
 
 
 
-export const youtubeAgent = new Agent({
-  name: 'YouTube Player Agent',
-  instructions: `
-    You are an assistant that opens and plays YouTube videos using a browser automation server.
-    Given a YouTube video link, use the tool to open and play the video in a new browser window.
-  `,
-  model: google('gemini-1.5-pro'),
-  tools: { youtubePlayTool },
-});
+// export const youtubeAgent = new Agent({
+//   name: 'YouTube Player Agent',
+//   instructions: `
+//     You are an automation agent that plays YouTube videos.
+    
+//     When given a search query, use the youtubePlayerTool to:
+//     - Open YouTube in the browser
+//     - Search the given query
+//     - Click the first video result to play it
 
+//     Only use the youtubePlayerTool for execution.
+//   `,
+//   model: google('gemini-2.0-flash'),
+//   tools: {
+//     youtubePlayerTool,
+//   },
+  
+// });

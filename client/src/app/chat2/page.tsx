@@ -15,7 +15,7 @@ import rehypeHighlight from 'rehype-highlight';
 // import { useToast } from "@/components/ui/use-toast"
 import { useMarkdownProcessor } from "@/components/hooks/use-text-processor"
 // import { CodeBlockParser } from "@/components/utils/code-block-parser"
-const ToolInvocationCard = ({ toolInvocation }) => {
+const ToolInvocationCard = ({ toolInvocation }:any) => {
     const [isExpanded, setIsExpanded] = useState(false)
   
     if (!toolInvocation) return null

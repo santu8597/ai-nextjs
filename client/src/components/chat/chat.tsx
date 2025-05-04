@@ -1,11 +1,10 @@
 "use client"
+
 import { useChat } from "@ai-sdk/react"
 import type React from "react"
-
 import { useEffect, useRef, useState } from "react"
 import { Loader2 } from "lucide-react"
 import { motion, AnimatePresence } from "framer-motion"
-
 import ChatHeader from "./chat-header"
 import ChatInput from "./chat-input"
 import ChatMessages from "./chat-messages"
@@ -13,10 +12,20 @@ import FilePreviewArea from "./file-preview-area"
 import PdfViewer from "./pdf-viewer"
 
 export default function Chat() {
+  const [selectedAgent, setSelectedAgent] = useState('shellAgent');
+  const agents = ['shellAgent', 'nextjsAgent', 'weatherAgent','imageAgent','MusicMoodAgent','twitterAgent','emailAgent','docsAgent','phishingDetectorAgent','normalAgent','browserAgent','webScraperAgent'];
+
+  const handleChange = (event:React.ChangeEvent<HTMLInputElement>) => {
+    setSelectedAgent(event.target.value);
+  };
   const { messages, input, handleInputChange, handleSubmit, isLoading } = useChat({
     api: "api/chat",
+    body: {
+      ai_agent:selectedAgent
+    }
   })
   const [files, setFiles] = useState<FileList | undefined>(undefined)
+  
   const [previews, setPreviews] = useState<string[]>([])
   const [pdfPreviews, setPdfPreviews] = useState<{ name: string; size: number; url: string }[]>([])
   const [activePdf, setActivePdf] = useState<string | null>(null)
@@ -122,6 +131,23 @@ export default function Chat() {
 
   return (
     <div className="flex flex-col w-full mx-auto h-screen bg-background shadow-lg overflow-hidden">
+      
+      
+      <div>
+        {agents.map((agent) => (
+          <label key={agent}>
+            <input
+              type="radio"
+              name="agent"
+              value={agent}
+              checked={selectedAgent === agent}
+              onChange={handleChange}
+            />
+            {agent}
+          </label>
+        ))}
+      </div>
+      
       <ChatHeader />
 
       <ChatMessages
@@ -163,6 +189,7 @@ export default function Chat() {
         formRef={formRef}
         fileInputRef={fileInputRef}
         handleFileChange={handleFileChange}
+        
       />
 
       {activePdf && <PdfViewer activePdf={activePdf} setActivePdf={setActivePdf} />}

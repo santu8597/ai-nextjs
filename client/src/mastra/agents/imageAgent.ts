@@ -14,7 +14,7 @@ export const imageAgent = new Agent({
 
     Always make sure the prompt is visual and descriptive.
     try to make the image big aspect ratio 16:9 and high quality.
-    dont speak to the user, just generate the image and try to make it as good as possible.
+    
     
   `,
   model: google('gemini-2.0-flash'),

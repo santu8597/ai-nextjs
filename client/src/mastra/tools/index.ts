@@ -8,7 +8,7 @@ import {analyzeSrcStructureTool} from './file-detail';
 import {scrapeDocsTool} from './scrap-tool';
 import {browserAutomationTool} from './browser-automation';
 import {webScraperTool} from './web-scrape';
-import {youtubePlayTool} from './youtube-tool';
+// import {youtubePlayerTool} from './youtube-tool';
 export {
   shellTool,
   sendEmailTool,
@@ -24,7 +24,7 @@ export {
   scrapeDocsTool,
   analyzeSrcStructureTool,
   browserAutomationTool,
-  webScraperTool,youtubePlayTool
+  webScraperTool
 }
 
 
