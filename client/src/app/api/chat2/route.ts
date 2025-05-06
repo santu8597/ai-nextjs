@@ -4,6 +4,7 @@ import { weatherTool,shellTool } from '@/mastra/tools';
 import {imageGenTool} from '@/mastra/tools/imagen-tool';
 import {fileSystemTool,componentTool} from '@/mastra/tools/nextjs-tool';
 import {analyzeSrcStructureTool} from '@/mastra/tools/file-detail';
+import {sendEmailTool} from '@/mastra/tools/mail-tool';
 interface Tool {
     name: keyof typeof toolRegistry;
     tool: string;
@@ -14,7 +15,8 @@ const toolRegistry = {
     shellTool,
     imageGenTool,
     fileSystemTool,
-    analyzeSrcStructureTool
+    analyzeSrcStructureTool,
+    sendEmailTool
   };
   
   export async function POST(req: Request) {

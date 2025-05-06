@@ -32,7 +32,7 @@ export default function SystemPromptEditor({
     { id: "analyzeSrcStructureTool", name: "Next.js Tool", icon: <Code className="h-4 w-4 mr-2" /> },
     { id: "musicMoodTool", name: "Music Mood Tool", icon: <Music className="h-4 w-4 mr-2" /> },
     { id: "twitterTool", name: "Twitter Tool", icon: <Twitter className="h-4 w-4 mr-2" /> },
-    { id: "emailTool", name: "Email Tool", icon: <Mail className="h-4 w-4 mr-2" /> },
+    { id: "sendEmailTool", name: "Email Tool", icon: <Mail className="h-4 w-4 mr-2" /> },
     { id: "docsTool", name: "Docs Tool", icon: <FileText className="h-4 w-4 mr-2" /> },
     { id: "phishingDetectorTool", name: "Phishing Detector Tool", icon: <Shield className="h-4 w-4 mr-2" /> },
     { id: "normalTool", name: "Normal Tool", icon: <User className="h-4 w-4 mr-2" /> },

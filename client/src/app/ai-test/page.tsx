@@ -187,30 +187,6 @@ export default function Chat() {
       <div className="flex items-center justify-between px-4 py-2 border-b">
         <ChatHeader />
 
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button variant="outline" className="flex items-center gap-2">
-              {getSelectedAgentIcon()}
-              <span>{getSelectedAgentName()}</span>
-              <ChevronDown className="h-4 w-4 ml-1 opacity-70" />
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent align="end" className="w-56">
-            {agents.map((agent) => (
-              <DropdownMenuItem
-                key={agent.id}
-                onClick={() => setSelectedAgent(agent.id)}
-                className="flex items-center justify-between"
-              >
-                <div className="flex items-center">
-                  {agent.icon}
-                  <span>{agent.name}</span>
-                </div>
-                {selectedAgent === agent.id && <Check className="h-4 w-4 ml-2" />}
-              </DropdownMenuItem>
-            ))}
-          </DropdownMenuContent>
-        </DropdownMenu>
       </div>
 
       <SystemPromptEditor
