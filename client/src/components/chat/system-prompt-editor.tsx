@@ -23,7 +23,7 @@ export default function SystemPromptEditor({
   onToolsChange,
   onApplyConfig,
 }: SystemPromptEditorProps) {
-  const [isExpanded, setIsExpanded] = useState(false)
+  const [isExpanded, setIsExpanded] = useState(true)
 
   const availableTools = [
     { id: "weatherTool", name: "Weather Tool", icon: <Cloud className="h-4 w-4 mr-2" /> },
@@ -37,7 +37,7 @@ export default function SystemPromptEditor({
     { id: "phishingDetectorTool", name: "Phishing Detector Tool", icon: <Shield className="h-4 w-4 mr-2" /> },
     { id: "normalTool", name: "Normal Tool", icon: <User className="h-4 w-4 mr-2" /> },
     { id: "browserTool", name: "Browser Tool", icon: <Globe className="h-4 w-4 mr-2" /> },
-    { id: "webScraperTool", name: "Web Scraper Tool", icon: <Search className="h-4 w-4 mr-2" /> },
+    { id: "webSearchTool", name: "Web Scraper Tool", icon: <Search className="h-4 w-4 mr-2" /> },
   ]
 
   const handleToolToggle = (toolId: string) => {

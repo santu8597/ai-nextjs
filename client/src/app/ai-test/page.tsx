@@ -18,8 +18,6 @@ import {
   User,
   Globe,
   Search,
-  ChevronDown,
-  Check,
 } from "lucide-react"
 import { motion, AnimatePresence } from "framer-motion"
 import ChatHeader from "@/components/chat/chat-header"
@@ -28,8 +26,6 @@ import ChatMessages from "@/components/chat/chat-messages"
 import FilePreviewArea from "@/components/chat/file-preview-area"
 import PdfViewer from "@/components/chat/pdf-viewer"
 import SystemPromptEditor from "@/components/chat/system-prompt-editor"
-import { Button } from "@/components/ui/button"
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
 
 export default function Chat() {
   const [selectedAgent, setSelectedAgent] = useState("shellAgent")
@@ -63,7 +59,7 @@ export default function Chat() {
   const { messages, input, handleInputChange, handleSubmit, isLoading, reload } = useChat({
     api: "api/chat2",
     body: {
-    //   ai_agent: selectedAgent,
+      //   ai_agent: selectedAgent,
       prompt: systemPrompt,
       array_tools: selectedTools.map((toolId) => ({ name: toolId, tool: toolId })),
     },
@@ -183,71 +179,76 @@ export default function Chat() {
   }
 
   return (
-    <div className="flex flex-col w-full mx-auto h-screen bg-background shadow-lg overflow-hidden">
+    <div className="flex flex-col h-screen bg-background shadow-lg overflow-hidden">
       <div className="flex items-center justify-between px-4 py-2 border-b">
         <ChatHeader />
-
       </div>
 
-      <SystemPromptEditor
-        systemPrompt={systemPrompt}
-        onSystemPromptChange={setSystemPrompt}
-        selectedTools={selectedTools}
-        onToolsChange={setSelectedTools}
-        onApplyConfig={handleApplyConfig}
-      />
-
-      <ChatMessages
-        messages={messages}
-        isLoading={isLoading}
-        messagesEndRef={messagesEndRef}
-        scrollAreaRef={scrollAreaRef}
-        handlePdfClick={handlePdfClick}
-        handleSuggestedPrompt={handleSuggestedPrompt}
-        formRef={formRef}
-        fileInputRef={fileInputRef}
-        handleFileChange={handleFileChange}
-      />
-
-      <AnimatePresence>
-        {(previews.length > 0 || pdfPreviews.length > 0) && (
-          <FilePreviewArea
-            previews={previews}
-            pdfPreviews={pdfPreviews}
-            clearFiles={clearFiles}
-            setPdfPreviews={setPdfPreviews}
+      <div className="flex w-full flex-1 flex-row-reverse overflow-hidden">
+        <div className="w-1/3 border-r overflow-auto">
+          <SystemPromptEditor
+            systemPrompt={systemPrompt}
+            onSystemPromptChange={setSystemPrompt}
+            selectedTools={selectedTools}
+            onToolsChange={setSelectedTools}
+            onApplyConfig={handleApplyConfig}
           />
-        )}
-      </AnimatePresence>
+        </div>
 
-      {isUploading && previews.length === 0 && pdfPreviews.length === 0 && (
-        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="flex items-center gap-2 py-2">
-          <Loader2 className="h-4 w-4 animate-spin text-primary" />
-          <span className="text-xs text-muted-foreground">Processing files...</span>
-        </motion.div>
-      )}
+        <div className="flex flex-col w-2/3 relative">
+          <ChatMessages
+            messages={messages}
+            isLoading={isLoading}
+            messagesEndRef={messagesEndRef}
+            scrollAreaRef={scrollAreaRef}
+            handlePdfClick={handlePdfClick}
+            handleSuggestedPrompt={handleSuggestedPrompt}
+            formRef={formRef}
+            fileInputRef={fileInputRef}
+            handleFileChange={handleFileChange}
+          />
 
-      {configApplied && (
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: 20 }}
-          className="fixed bottom-20 left-1/2 transform -translate-x-1/2 bg-green-500 text-white px-4 py-2 rounded-md shadow-lg"
-        >
-          Configuration applied successfully!
-        </motion.div>
-      )}
+          <AnimatePresence>
+            {(previews.length > 0 || pdfPreviews.length > 0) && (
+              <FilePreviewArea
+                previews={previews}
+                pdfPreviews={pdfPreviews}
+                clearFiles={clearFiles}
+                setPdfPreviews={setPdfPreviews}
+              />
+            )}
+          </AnimatePresence>
 
-      <ChatInput
-        input={input}
-        handleInputChange={handleInputChange}
-        onSubmit={onSubmit}
-        isLoading={isLoading}
-        files={files}
-        formRef={formRef}
-        fileInputRef={fileInputRef}
-        handleFileChange={handleFileChange}
-      />
+          {isUploading && previews.length === 0 && pdfPreviews.length === 0 && (
+            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="flex items-center gap-2 py-2">
+              <Loader2 className="h-4 w-4 animate-spin text-primary" />
+              <span className="text-xs text-muted-foreground">Processing files...</span>
+            </motion.div>
+          )}
+
+          {configApplied && (
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 20 }}
+              className="fixed bottom-20 left-1/2 transform -translate-x-1/2 bg-green-500 text-white px-4 py-2 rounded-md shadow-lg"
+            >
+              Configuration applied successfully!
+            </motion.div>
+          )}
+
+          <ChatInput
+            input={input}
+            handleInputChange={handleInputChange}
+            onSubmit={onSubmit}
+            isLoading={isLoading}
+            files={files}
+            formRef={formRef}
+            fileInputRef={fileInputRef}
+            handleFileChange={handleFileChange}
+          />
+        </div>
+      </div>
 
       {activePdf && <PdfViewer activePdf={activePdf} setActivePdf={setActivePdf} />}
     </div>
