@@ -6,6 +6,7 @@ import {fileSystemTool,componentTool} from '@/mastra/tools/nextjs-tool';
 import {analyzeSrcStructureTool} from '@/mastra/tools/file-detail';
 import {sendEmailTool} from '@/mastra/tools/mail-tool';
 import {webSearchTool} from '@/mastra/tools/web-tool';
+import {musicMoodTool} from '@/mastra/tools/MusicAgent/MusicAgent';
 interface Tool {
     name: keyof typeof toolRegistry;
     tool: string;
@@ -18,7 +19,8 @@ const toolRegistry = {
     fileSystemTool,
     analyzeSrcStructureTool,
     sendEmailTool,
-    webSearchTool
+    webSearchTool,
+    musicMoodTool
   };
   
   export async function POST(req: Request) {

@@ -68,7 +68,7 @@ export default function SystemPromptEditor({
               <Textarea
                 id="system-prompt"
                 placeholder="Enter system instructions for the AI..."
-                className="mt-1 min-h-[100px]"
+                className="mt-4 min-h-[290px] max-h-[290px] overflow-y-scroll"
                 value={systemPrompt}
                 onChange={(e) => onSystemPromptChange(e.target.value)}
               />

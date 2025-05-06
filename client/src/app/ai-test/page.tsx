@@ -33,28 +33,7 @@ export default function Chat() {
   const [selectedTools, setSelectedTools] = useState<string[]>([])
   const [configApplied, setConfigApplied] = useState(false)
 
-  const agents = [
-    { id: "shellAgent", name: "Shell Agent", icon: <Terminal className="h-4 w-4 mr-2" /> },
-    { id: "nextjsAgent", name: "Next.js Agent", icon: <Code className="h-4 w-4 mr-2" /> },
-    { id: "weatherAgent", name: "Weather Agent", icon: <Cloud className="h-4 w-4 mr-2" /> },
-    { id: "imageAgent", name: "Image Agent", icon: <ImageIcon className="h-4 w-4 mr-2" /> },
-    { id: "MusicMoodAgent", name: "Music Mood Agent", icon: <Music className="h-4 w-4 mr-2" /> },
-    { id: "twitterAgent", name: "Twitter Agent", icon: <Twitter className="h-4 w-4 mr-2" /> },
-    { id: "emailAgent", name: "Email Agent", icon: <Mail className="h-4 w-4 mr-2" /> },
-    { id: "docsAgent", name: "Docs Agent", icon: <FileText className="h-4 w-4 mr-2" /> },
-    { id: "phishingDetectorAgent", name: "Phishing Detector", icon: <Shield className="h-4 w-4 mr-2" /> },
-    { id: "normalAgent", name: "Normal Agent", icon: <User className="h-4 w-4 mr-2" /> },
-    { id: "browserAgent", name: "Browser Agent", icon: <Globe className="h-4 w-4 mr-2" /> },
-    { id: "webScraperAgent", name: "Web Scraper Agent", icon: <Search className="h-4 w-4 mr-2" /> },
-  ]
 
-  const getSelectedAgentName = () => {
-    return agents.find((agent) => agent.id === selectedAgent)?.name || "Select Agent"
-  }
-
-  const getSelectedAgentIcon = () => {
-    return agents.find((agent) => agent.id === selectedAgent)?.icon
-  }
 
   const { messages, input, handleInputChange, handleSubmit, isLoading, reload } = useChat({
     api: "api/chat2",
