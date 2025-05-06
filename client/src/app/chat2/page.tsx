@@ -15,7 +15,7 @@ import rehypeHighlight from 'rehype-highlight';
 // import { useToast } from "@/components/ui/use-toast"
 import { useMarkdownProcessor } from "@/components/hooks/use-text-processor"
 // import { CodeBlockParser } from "@/components/utils/code-block-parser"
-const ToolInvocationCard = ({ toolInvocation }:any) => {
+const ToolInvocationCard = ({ toolInvocation }) => {
     const [isExpanded, setIsExpanded] = useState(false)
   
     if (!toolInvocation) return null
@@ -53,7 +53,14 @@ const ToolInvocationCard = ({ toolInvocation }:any) => {
   
 export default function Chat() {
   const { messages, input, handleInputChange, handleSubmit, isLoading } = useChat({
-    api: "api/chat",
+    api: "api/chat2",
+    body:{
+      prompt: "you are a helpful assistant that can answer questions and provide information. You can also use tools to assist you in your tasks.",
+      array_tools: [
+        { name: 'weatherTool', tool: 'weatherTool' },
+        { name: 'shellTool', tool: 'shellTool' }
+      ],
+    }
   })
   const [files, setFiles] = useState<FileList | undefined>(undefined)
   const [previews, setPreviews] = useState<string[]>([])
