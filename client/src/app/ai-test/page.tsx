@@ -30,7 +30,7 @@ import SystemPromptEditor from "@/components/chat/system-prompt-editor"
 export default function Chat() {
   const [selectedAgent, setSelectedAgent] = useState("shellAgent")
   const [systemPrompt, setSystemPrompt] = useState("You are a helpful AI assistant.")
-  const [selectedTools, setSelectedTools] = useState<string[]>(["shellTool"])
+  const [selectedTools, setSelectedTools] = useState<string[]>([])
   const [configApplied, setConfigApplied] = useState(false)
 
   const agents = [
