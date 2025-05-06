@@ -6,7 +6,7 @@ import { Textarea } from "@/components/ui/textarea"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Checkbox } from "@/components/ui/checkbox"
 import { Label } from "@/components/ui/label"
-import { ChevronDown, ChevronUp, Code, Cloud, Terminal, ImageIcon, RefreshCw,Music,Mail,FileText,Shield,Twitter,User,Globe ,Search} from "lucide-react"
+import { ChevronDown, ChevronUp, Code, Cloud, Terminal, ImageIcon, RefreshCw,Music,Mail,FileText,Shield,Twitter,User,Globe ,Search,Folder} from "lucide-react"
 
 interface SystemPromptEditorProps {
   systemPrompt: string
@@ -29,15 +29,15 @@ export default function SystemPromptEditor({
     { id: "weatherTool", name: "Weather Tool", icon: <Cloud className="h-4 w-4 mr-2" /> },
     { id: "shellTool", name: "Shell Tool", icon: <Terminal className="h-4 w-4 mr-2" /> },
     { id: "imageGenTool", name: "Image Generation Tool", icon: <ImageIcon className="h-4 w-4 mr-2" /> },
-    { id: "analyzeSrcStructureTool", name: "Next.js Tool", icon: <Code className="h-4 w-4 mr-2" /> },
+    { id: "analyzeSrcStructureTool", name: "Folder-Structure Tool", icon: <Folder className="h-4 w-4 mr-2" /> },
     { id: "musicMoodTool", name: "Music Mood Tool", icon: <Music className="h-4 w-4 mr-2" /> },
-    { id: "twitterTool", name: "Twitter Tool", icon: <Twitter className="h-4 w-4 mr-2" /> },
+    // { id: "twitterTool", name: "Twitter Tool", icon: <Twitter className="h-4 w-4 mr-2" /> },
     { id: "sendEmailTool", name: "Email Tool", icon: <Mail className="h-4 w-4 mr-2" /> },
-    { id: "docsTool", name: "Docs Tool", icon: <FileText className="h-4 w-4 mr-2" /> },
-    { id: "phishingDetectorTool", name: "Phishing Detector Tool", icon: <Shield className="h-4 w-4 mr-2" /> },
-    { id: "normalTool", name: "Normal Tool", icon: <User className="h-4 w-4 mr-2" /> },
-    { id: "browserTool", name: "Browser Tool", icon: <Globe className="h-4 w-4 mr-2" /> },
-    { id: "webSearchTool", name: "Web Scraper Tool", icon: <Search className="h-4 w-4 mr-2" /> },
+    // { id: "docsTool", name: "Docs Tool", icon: <FileText className="h-4 w-4 mr-2" /> },
+    // { id: "phishingDetectorTool", name: "Phishing Detector Tool", icon: <Shield className="h-4 w-4 mr-2" /> },
+    // { id: "normalTool", name: "Normal Tool", icon: <User className="h-4 w-4 mr-2" /> },
+    { id: "webSearchTool", name: "Browser Tool", icon: <Globe className="h-4 w-4 mr-2" /> },
+    { id: "scrapeDocsTool", name: "Web Scraper Tool", icon: <Search className="h-4 w-4 mr-2" /> },
   ]
 
   const handleToolToggle = (toolId: string) => {

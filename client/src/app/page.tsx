@@ -63,12 +63,12 @@ export default function LandingPage() {
                   </p>
                 </div>
                 <div className="flex flex-col gap-2 min-[400px]:flex-row">
-                  <Link href="/chat" className="gap-1.5 text-white shadow-md px-3 rounded-md flex items-center font-semibold bg-black">
+                  <Link href="/chat" className="gap-1.5 text-white shadow-md px-3 py-2 rounded-md flex items-center font-semibold bg-black">
                     Get Started <ArrowRight className="h-4 w-4" />
                   </Link>
-                  <Button size="lg" variant="outline">
-                    View Demo
-                  </Button>
+                  <Link href="/ai-test" className="gap-1.5 text-white shadow-md px-3 py-2 rounded-md flex items-center font-semibold bg-black">
+                    Built your own <ArrowRight className="h-4 w-4" />
+                  </Link>
                 </div>
                 <div className="flex items-center gap-4 text-sm">
                   <div className="flex items-center gap-1">

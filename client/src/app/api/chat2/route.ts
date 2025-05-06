@@ -7,6 +7,7 @@ import {analyzeSrcStructureTool} from '@/mastra/tools/file-detail';
 import {sendEmailTool} from '@/mastra/tools/mail-tool';
 import {webSearchTool} from '@/mastra/tools/web-tool';
 import {musicMoodTool} from '@/mastra/tools/MusicAgent/MusicAgent';
+import {scrapeDocsTool} from '@/mastra/tools/scrap-tool';
 interface Tool {
     name: keyof typeof toolRegistry;
     tool: string;
@@ -20,7 +21,8 @@ const toolRegistry = {
     analyzeSrcStructureTool,
     sendEmailTool,
     webSearchTool,
-    musicMoodTool
+    musicMoodTool,
+    scrapeDocsTool
   };
   
   export async function POST(req: Request) {
